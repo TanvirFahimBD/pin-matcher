@@ -13,14 +13,14 @@
             <div class="col-md-6">
                 <div class="pin-generator half-width">
                     <input id="generate-pin-output" class="form-control" type="text" value="">
-                    <button id="generate-pin-count" class="generate-btn">Generate Pin</button>
+                    <button onclick="generatePin()" class="generate-btn">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
                     <input class="form-control" type="text">
                     <div class="numbers">
-                        <div class="calc-body">
+                        <div id="digits-container" class="calc-body">
                             <div class="calc-button-row">
                               <div class="button">7</div>
                               <div class="button">8</div>
@@ -55,16 +55,33 @@
         </div>
     </div>
     <script>
-        document.getElementById('generate-pin-count').addEventListener('click', function(){
-            // let generatePinOutput = document.getElementById('generate-pin-output').innerText = Math.round(Math.random()*10000);
-            // const generatePinOutput = document.getElementById('generate-pin-output').innerText;
-            // const generatePinOutputValue = parseInt(generatePinOutput)
-            // const newGeneratePin = Math.round(Math.random()*10000+'')
+        //Using Function
+            function getPin(){
+                const newGeneratePin = (Math.random()*10000+'').split('.')[0];
+                if(newGeneratePin.length === 4){
+                    return newGeneratePin;
+                }else{
+                    console.log('Shorter Pin ', newGeneratePin);
+                    return getPin();
+                }   
+            }
+            //Display Generated Pin
+            function generatePin(){    
+                document.getElementById('generate-pin-output').value = getPin();
+            }
 
-            const newGeneratePin = (Math.random()*10000+'').split('.')[0]
-            console.log(newGeneratePin);
-            document.getElementById('generate-pin-output').value = newGeneratePin;
-        });
+
+        //Mine Code
+        // document.getElementById('generate-pin-count').addEventListener('click', function(){
+        //     // let generatePinOutput = document.getElementById('generate-pin-output').innerText = Math.round(Math.random()*10000);
+        //     // const generatePinOutput = document.getElementById('generate-pin-output').innerText;
+        //     // const generatePinOutputValue = parseInt(generatePinOutput)
+        //     // const newGeneratePin = Math.round(Math.random()*10000+'')
+
+        //     const newGeneratePin = (Math.random()*10000+'').split('.')[0]
+        //     console.log(newGeneratePin);
+        //     document.getElementById('generate-pin-output').value = newGeneratePin;
+        // });
     </script>
 </body>
 </html>
